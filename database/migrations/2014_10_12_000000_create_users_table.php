@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Role;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -13,6 +14,18 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::create('roles', function (Blueprint $table) {
+            $table->id();
+            $table->string('role');
+            $table->timestamps();
+        });
+        Role::create(
+            ['role'=>'Admin']
+        );
+        Role::create(
+            ['role'=>'Manger']
+        );
+        Role::create(['role'=>'Member']);
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -21,6 +34,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->foreignId('role_id')->default('3')->constrained();
         });
     }
 
