@@ -15,9 +15,11 @@
                     <x-nav-link :href="route('projects')" :active="request()->routeIs('projects')">
                         {{ __('My Projects') }}
                     </x-nav-link>
+                    @can('admin')
                     <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
                         {{ __('Admin') }}
                     </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
@@ -69,9 +71,11 @@
             <x-responsive-nav-link :href="route('projects')" :active="request()->routeIs('projects')">
                 {{ __('My Projects') }}
             </x-responsive-nav-link>
+            @can('admin')
             <x-responsive-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
                 {{ __('Admin') }}
             </x-responsive-nav-link>
+            @endcan
         </div>
 
         <!-- Responsive Settings Options -->

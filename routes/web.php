@@ -43,9 +43,9 @@ Route::post('/projects/{project}/project-assignment-create', [ProjectAssignmentC
 Route::delete('/{user}/delete', [ProjectAssignmentController::class,'destroy']
 )->middleware(['can:adminORmanager'])->name('deleteProjectAssignment');
 
-Route::get('/admin',[UserController::class,'index'])->middleware(['auth'])->name('admin');
-Route::patch('/admin/{user}',[UserController::class,'update'])->middleware(['auth'])->name('updateUser');
-Route::delete('/admin/{user}',[UserController::class,'destroy'])->middleware(['auth'])->name('deleteUser');
+Route::get('/admin',[UserController::class,'index'])->middleware(['can:admin'])->name('admin');
+Route::patch('/admin/{user}',[UserController::class,'update'])->middleware(['can:admin'])->name('updateUser');
+Route::delete('/admin/{user}',[UserController::class,'destroy'])->middleware(['can:admin'])->name('deleteUser');
 
 
 Route::get('/projects/{project}/task/create', [TaskController::class,'create']
